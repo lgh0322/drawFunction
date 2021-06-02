@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.vaca.calc.databinding.ActivityMainBinding
 import net.objecthunter.exp4j.Expression
 import net.objecthunter.exp4j.ExpressionBuilder
+import java.lang.Exception
 
 
 /*
@@ -67,7 +68,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
 
 
-        initFun("x^2+x+1")
+        initFun("1/x")
 
 
 
@@ -77,10 +78,24 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
 
            val gg2=DoubleArray(500){
-               getValue(ff1[it])
+               it2->
+               val c=getValue(ff1[it2])
+               if(c.isNaN()){
+                   0.0
+               }else if(c.isInfinite()){
+                    0.0
+               }else{
+                   c
+               }
            }
 
 
+
+        for(k in gg2){
+            Log.e( "螺丝钉咖啡碱考虑","fuck ${k}")
+        }
+
+        Log.e("fuck","看见士大夫艰苦了  ${gg2[0]}")
 
 
 
@@ -91,6 +106,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         binding.graph.waveData=gg2
         binding.graph.waveDataX=ff1
+
+        binding.graph.invalidate()
 
 
 
@@ -122,7 +139,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     fun getValue(x:Double):Double{
         myFun.setVariable("x",x)
-        return myFun.evaluate()
+        try {
+            return myFun.evaluate()
+        }catch (e:Exception){
+            return 0.0
+        }
+
     }
 
     override fun onClick(v: View?) {

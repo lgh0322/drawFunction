@@ -33,8 +33,8 @@ class GraphView : View {
     var lX=-5f;
     var rX=5f;
 
-    var uY=30f;
-    var dY=-30f;
+    var uY=5f;
+    var dY=-5f;
 
 
     fun transferX(d:Double):Float{
