@@ -22,6 +22,52 @@ class GraphView : View {
     private val canvasWF = canvasW.toFloat()
     private val diaW = getPixel(R.dimen.dia_w).toFloat()
 
+    private val wavePaint = Paint()
+
+
+
+
+
+
+
+    var lX=-5f;
+    var rX=5f;
+
+    var uY=30f;
+    var dY=-30f;
+
+
+    fun transferX(d:Double):Float{
+        return ((d-lX)/(rX-lX)*width).toFloat()
+    }
+
+
+    fun transferY(d:Double):Float{
+        return (height-(d-dY)/(uY-dY)*height).toFloat()
+    }
+
+
+
+  lateinit  var waveData: DoubleArray
+
+
+   lateinit var waveDataX: DoubleArray
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     var seeTime: Long = System.currentTimeMillis()
 
     constructor(context: Context?) : super(context) {
@@ -70,6 +116,12 @@ class GraphView : View {
             color = getColor(R.color.sysShadowColor)
             style = Paint.Style.FILL
         }
+
+        wavePaint.apply {
+            color = getColor(R.color.wave_color)
+            style = Paint.Style.STROKE
+            strokeWidth = 5.0f
+        }
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -78,10 +130,27 @@ class GraphView : View {
         canvas.drawColor(getColor(R.color.white))
 
 
+        var wavePath = Path()
 
 
 
 
+
+
+
+
+
+
+
+        wavePath.moveTo(
+            waveDataX[0].toFloat(),
+            waveDataX[0].toFloat(),
+        )
+
+        wavePath.lineTo(
+          700f,700f
+        )
+        canvas.drawPath(wavePath,wavePaint)
 
     }
 
@@ -143,22 +212,6 @@ class GraphView : View {
 
 
 
-    private fun drawDia(canvas: Canvas, x: Float, y: Float) {
-        val halfWidth = diaW / 2
-        val path = Path()
-        path.moveTo(x, y + halfWidth)
-        path.lineTo(x - halfWidth, y)
-        path.lineTo(x, y - halfWidth)
-        path.lineTo(x + halfWidth, y)
-        path.lineTo(x, y + halfWidth)
-        path.close()
-        canvas.drawPath(path, diaPaint)
-    }
-
-    private fun drawSys(canvas: Canvas, x: Float, y: Float) {
-        val halfWidth = diaW / 2
-        canvas.drawCircle(x, y, halfWidth, sysPaint)
-    }
 
 
 
