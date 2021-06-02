@@ -44,30 +44,36 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     var vibrator: Vibrator? = null
     lateinit var binding:ActivityMainBinding
 
+    lateinit var myFun:Expression
+
     override fun onCreate(savedInstanceState: Bundle?)  {
         super.onCreate(savedInstanceState)
         binding= ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         vibrator = getSystemService(VIBRATOR_SERVICE) as (Vibrator)
-        val e: Expression = ExpressionBuilder("3 * sin(y) - 2 / (x - 2)")
-            .variables("x", "y")
-            .build()
-            .setVariable("x", 2.3)
-            .setVariable("y", 3.14)
-        val result: Double = e.evaluate()
-
-
-        e.setVariable("x",5.0)
 
 
 
-        Log.e("上岛咖啡","re        ${e.evaluate()}")
+
+
 
 
         binding.x1.setOnClickListener(this)
         binding.x2.setOnClickListener(this)
         binding.x4.setOnClickListener(this)
 
+    }
+
+    fun initFun(s:String){
+        myFun=ExpressionBuilder(s)
+            .variables("x")
+            .build()
+    }
+
+
+    fun getValue(x:Double):Double{
+        myFun.setVariable("x",x)
+        return myFun.evaluate()
     }
 
     override fun onClick(v: View?) {
