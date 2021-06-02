@@ -143,13 +143,17 @@ class GraphView : View {
 
 
         wavePath.moveTo(
-            waveDataX[0].toFloat(),
-            waveDataX[0].toFloat(),
+            transferX(waveDataX[0]),
+           transferY(waveData[0]),
         )
 
-        wavePath.lineTo(
-          700f,700f
-        )
+        for (k in waveData.indices){
+            wavePath.lineTo(
+                transferX(waveDataX[k]),
+                transferY(waveData[k]),
+            )
+        }
+
         canvas.drawPath(wavePath,wavePaint)
 
     }

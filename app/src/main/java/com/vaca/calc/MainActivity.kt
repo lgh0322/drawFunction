@@ -62,6 +62,55 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         binding.x2.setOnClickListener(this)
         binding.x4.setOnClickListener(this)
 
+
+
+
+
+
+        initFun("x^2+x+1")
+
+
+
+        val ff1=DoubleArray(500){
+            it/50.0-5.0
+        }
+
+
+           val gg2=DoubleArray(500){
+               getValue(ff1[it])
+           }
+
+
+
+
+
+
+
+
+
+
+        binding.graph.waveData=gg2
+        binding.graph.waveDataX=ff1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
     fun initFun(s:String){
