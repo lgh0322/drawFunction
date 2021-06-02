@@ -1,10 +1,14 @@
 package com.vaca.calc
 
 import android.os.Bundle
+import android.os.Vibrator
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.vaca.calc.databinding.ActivityMainBinding
 import net.objecthunter.exp4j.Expression
 import net.objecthunter.exp4j.ExpressionBuilder
+
 
 /*
 abs: absolute value
@@ -35,11 +39,16 @@ Unary Minus,Plus (Sign Operators): '+2 - (-2)'
 Modulo: '2 % 2'
 */
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+class MainActivity : AppCompatActivity(), View.OnClickListener {
 
+    var vibrator: Vibrator? = null
+    lateinit var binding:ActivityMainBinding
+
+    override fun onCreate(savedInstanceState: Bundle?)  {
+        super.onCreate(savedInstanceState)
+        binding= ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        vibrator = getSystemService(VIBRATOR_SERVICE) as (Vibrator)
         val e: Expression = ExpressionBuilder("3 * sin(y) - 2 / (x - 2)")
             .variables("x", "y")
             .build()
@@ -53,5 +62,15 @@ class MainActivity : AppCompatActivity() {
 
 
         Log.e("上岛咖啡","re        ${e.evaluate()}")
+
+
+        binding.x1.setOnClickListener(this)
+        binding.x2.setOnClickListener(this)
+        binding.x4.setOnClickListener(this)
+
+    }
+
+    override fun onClick(v: View?) {
+        vibrator?.vibrate(30)
     }
 }
