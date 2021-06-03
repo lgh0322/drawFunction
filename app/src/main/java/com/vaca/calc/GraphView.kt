@@ -10,17 +10,7 @@ import androidx.core.content.ContextCompat
 
 
 class GraphView : View {
-    private val sysPaint = Paint()
-    private val sysShadowPaint = Paint()
-    private val diaPaint = Paint()
-    private val diaShadowPaint = Paint()
-    private val boarderPaint = Paint()
-    private val gridPaint = Paint()
-    private val canvasW = getPixel(R.dimen.w)
-    private val canvasH = getPixel(R.dimen.h)
-    private val canvasHF = canvasH.toFloat()
-    private val canvasWF = canvasW.toFloat()
-    private val diaW = getPixel(R.dimen.dia_w).toFloat()
+
 
     private val wavePaint = Paint()
 
@@ -48,7 +38,7 @@ class GraphView : View {
 
 
 
-  lateinit  var waveData: DoubleArray
+  lateinit  var waveDataY: DoubleArray
 
 
    lateinit var waveDataX: DoubleArray
@@ -87,35 +77,6 @@ class GraphView : View {
     }
 
     private fun init() {
-        boarderPaint.apply {
-            color = getColor(R.color.myBlue)
-            style = Paint.Style.STROKE
-            strokeWidth = getPixel(R.dimen.grid_w).toFloat() * 2
-        }
-
-        gridPaint.apply {
-            color = getColor(R.color.myGray)
-            style = Paint.Style.STROKE
-            strokeWidth = getPixel(R.dimen.grid_w).toFloat()
-        }
-
-        diaPaint.apply {
-            color = getColor(R.color.diaColor)
-            style = Paint.Style.FILL
-        }
-        diaShadowPaint.apply {
-            color = getColor(R.color.diaShadowColor)
-            style = Paint.Style.FILL
-        }
-        sysPaint.apply {
-            color = getColor(R.color.sysColor)
-            style = Paint.Style.FILL
-            isAntiAlias = true
-        }
-        sysShadowPaint.apply {
-            color = getColor(R.color.sysShadowColor)
-            style = Paint.Style.FILL
-        }
 
         wavePaint.apply {
             color = getColor(R.color.wave_color)
@@ -130,31 +91,27 @@ class GraphView : View {
         canvas.drawColor(getColor(R.color.white))
 
 
-        var wavePath = Path()
+        if(waveDataX.isNotEmpty()){
+            var wavePath = Path()
 
 
-
-
-
-
-
-
-
-
-
-        wavePath.moveTo(
-            transferX(waveDataX[0]),
-           transferY(waveData[0]),
-        )
-
-        for (k in waveData.indices){
+            wavePath.moveTo(
+                transferX(waveDataX[0]),
+                transferY(waveDataY[0]),
+            )
             wavePath.lineTo(
                 transferX(waveDataX[k]),
-                transferY(waveData[k]),
+                transferY(waveDataY[k]),
             )
+
+
+            canvas.drawPath(wavePath,wavePaint)
+
         }
 
-        canvas.drawPath(wavePath,wavePaint)
+
+
+
 
     }
 
@@ -164,10 +121,6 @@ class GraphView : View {
 
     private fun getPixel(resource_id: Int): Int {
         return resources.getDimensionPixelSize(resource_id)
-    }
-
-    override fun onMeasure(width: Int, height: Int) {
-        setMeasuredDimension(canvasW, canvasH)
     }
 
 
