@@ -25,18 +25,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     lateinit var myFun:Expression
 
-    val lX=-5.0;
-    val rX=5.0;
-    val uY=10.0;
-    val dY=-10.0;
+    var lX=-5.0;
+    var rX=5.0;
+    var uY=10.0;
+    var dY=-10.0;
 
-    val deltaX=0.3;
-    val deltaY=0.3;
+    var deltaX=0.3;
+    var deltaY=0.3;
 
 
 
-    val xCount=((rX-lX)/deltaX).toInt()
-    val yCount=((uY-dY)/deltaY).toInt()
+    var xCount=((rX-lX)/deltaX).toInt()
+    var yCount=((uY-dY)/deltaY).toInt()
     lateinit var  pointXset:DoubleArray
     lateinit var  pointYset:DoubleArray
 
@@ -162,7 +162,55 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         binding.x4.setOnClickListener(this)
 
 
+
         funString.observe(this,{
+            try {
+                lX=binding.xmin.text.toString().toDouble()
+            }catch (e:Exception){
+
+            }
+            try {
+                rX=binding.xmax.text.toString().toDouble()
+            }catch (e:Exception){
+
+            }
+            try {
+                uY=binding.ymax.text.toString().toDouble()
+            }catch (e:Exception){
+
+            }
+            try {
+                dY=binding.ymin.text.toString().toDouble()
+            }catch (e:Exception){
+
+            }
+            try {
+                deltaX=binding.xstep.text.toString().toDouble()
+            }catch (e:Exception){
+
+            }
+            try {
+                deltaY=binding.ystep.text.toString().toDouble()
+            }catch (e:Exception){
+
+            }
+
+
+
+
+
+
+
+
+
+           xCount=((rX-lX)/deltaX).toInt()
+           yCount=((uY-dY)/deltaY).toInt()
+            binding.graph.initCor(lX,rX,uY,dY)
+
+
+
+
+
             initFun(it)
             binding.func.setText(it)
             validLineArray.clear()
@@ -259,8 +307,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
 
 
-        binding.graph.initCor(lX,rX,uY,dY)
 
+
+        binding.xmin.setText(lX.toString())
+        binding.xmax.setText(rX.toString())
+        binding.xstep.setText(deltaX.toString())
+        binding.ymin.setText(dY.toString())
+        binding.ymax.setText(uY.toString())
+        binding.ystep.setText(deltaY.toString())
 
         funString.postValue("y ^2 +x^2-5")
 
@@ -329,6 +383,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             R.id.x2->{
+                if( binding.windows.visibility!=View.VISIBLE){
+                    binding.windows.visibility=View.VISIBLE
+                }else{
+                    binding.windows.visibility=View.GONE
+                }
 
             }
 
