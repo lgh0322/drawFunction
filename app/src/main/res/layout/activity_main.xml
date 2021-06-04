@@ -7,82 +7,119 @@
     tools:context=".MainActivity">
 
 
-
    <com.vaca.calc.GraphView
        android:id="@+id/graph"
        android:layout_width="match_parent"
-       android:layout_height="match_parent"/>
-
+       android:layout_height="match_parent" />
 
 
    <LinearLayout
-       app:layout_constraintTop_toTopOf="parent"
-       android:orientation="horizontal"
+       android:id="@+id/topX"
        android:layout_width="match_parent"
-       android:layout_height="50dp">
+       android:layout_height="50dp"
+       android:orientation="horizontal"
+       app:layout_constraintTop_toTopOf="parent">
+
       <androidx.cardview.widget.CardView
           android:layout_width="0dp"
+          android:layout_height="match_parent"
           android:layout_margin="10dp"
-          android:layout_weight="1"
-          android:layout_height="match_parent">
+          android:layout_weight="1">
+
          <TextView
-             android:clickable="true"
-             android:focusable="true"
              android:id="@+id/x1"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
              android:background="@drawable/bt_bg"
+             android:clickable="true"
+             android:focusable="true"
              android:gravity="center"
-             android:textColor="@color/YellowGreen"
-             android:textSize="20sp"
              android:text="Y="
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"/>
+             android:textColor="@color/YellowGreen"
+             android:textSize="20sp" />
       </androidx.cardview.widget.CardView>
 
       <androidx.cardview.widget.CardView
           android:layout_width="0dp"
+          android:layout_height="match_parent"
           android:layout_margin="10dp"
-          android:layout_weight="1"
-          android:layout_height="match_parent">
+          android:layout_weight="1">
+
          <TextView
-             android:clickable="true"
-             android:focusable="true"
              android:id="@+id/x2"
-             android:background="@drawable/bt_bg"
-             android:gravity="center"
-             android:textColor="@color/YellowGreen"
-             android:textSize="14sp"
-             android:text="WINDOW"
              android:layout_width="match_parent"
-             android:layout_height="match_parent"/>
-      </androidx.cardview.widget.CardView>
-
-      <androidx.cardview.widget.CardView
-          android:layout_width="0dp"
-          android:layout_margin="10dp"
-          android:layout_weight="1"
-          android:visibility="invisible"
-          android:layout_height="match_parent">
-
-      </androidx.cardview.widget.CardView>
-
-      <androidx.cardview.widget.CardView
-          android:layout_width="0dp"
-          android:layout_margin="10dp"
-          android:layout_weight="1"
-          android:layout_height="match_parent">
-         <TextView
+             android:layout_height="match_parent"
+             android:background="@drawable/bt_bg"
              android:clickable="true"
              android:focusable="true"
-             android:id="@+id/x4"
-             android:background="@drawable/bt_bg"
              android:gravity="center"
+             android:text="WINDOW"
              android:textColor="@color/YellowGreen"
-             android:textSize="16sp"
-             android:text="GRAPH"
+             android:textSize="14sp" />
+      </androidx.cardview.widget.CardView>
+
+      <androidx.cardview.widget.CardView
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_margin="10dp"
+          android:layout_weight="1"
+          android:visibility="invisible">
+
+      </androidx.cardview.widget.CardView>
+
+      <androidx.cardview.widget.CardView
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_margin="10dp"
+          android:layout_weight="1">
+
+         <TextView
+             android:id="@+id/x4"
              android:layout_width="match_parent"
-             android:layout_height="match_parent"/>
+             android:layout_height="match_parent"
+             android:background="@drawable/bt_bg"
+             android:clickable="true"
+             android:focusable="true"
+             android:gravity="center"
+             android:text="GRAPH"
+             android:textColor="@color/YellowGreen"
+             android:textSize="16sp" />
       </androidx.cardview.widget.CardView>
 
    </LinearLayout>
+
+
+   <EditText
+       android:id="@+id/func"
+       android:layout_width="260dp"
+       android:layout_height="50dp"
+       android:layout_margin="10dp"
+       android:background="@drawable/pr_report_bt_bg"
+       android:gravity="center"
+       android:inputType="textEmailAddress"
+       android:padding="5dp"
+       android:textColor="@color/white"
+       android:textSize="30sp"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/topX" />
+
+   <TextView
+       android:id="@+id/funcHint"
+       android:layout_width="wrap_content"
+       android:layout_height="50dp"
+       android:layout_margin="10dp"
+       android:gravity="center"
+       android:text="= 0"
+       android:textColor="@color/black"
+       android:textSize="30sp"
+       app:layout_constraintStart_toEndOf="@+id/func"
+       app:layout_constraintTop_toBottomOf="@+id/topX" />
+
+   <androidx.constraintlayout.widget.Group
+       android:id="@+id/group"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       app:constraint_referenced_ids="func,funcHint" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
