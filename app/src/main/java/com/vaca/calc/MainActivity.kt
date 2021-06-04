@@ -13,7 +13,7 @@ import java.lang.Exception
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
-    val fuck:MutableList <Line> = ArrayList()
+    val validLineArray:MutableList <Line> = ArrayList()
     var vibrator: Vibrator? = null
     lateinit var binding:ActivityMainBinding
 
@@ -104,9 +104,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
 
 
-        initFun("x ^ 2 + y ^ 2 -12.01")
+//        initFun("x ^ 2 + y ^ 2 -12.01")
 
-
+        initFun("y-sin(3*x)")
 
 
         for(xIndex in 0 until xCount){
@@ -138,49 +138,49 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
                 when(signTotal){
                     1->{
-                        fuck.add(case1(2,3,0))
+                        validLineArray.add(case1(2,3,0))
                     }
                     2->{
-                        fuck.add(case1(1,2,3))
+                        validLineArray.add(case1(1,2,3))
                     }
                     4->{
-                        fuck.add(case1(0,1,2))
+                        validLineArray.add(case1(0,1,2))
                     }
                     8->{
-                        fuck.add(case1(3,0,1))
+                        validLineArray.add(case1(3,0,1))
                     }
 
                     7->{
-                        fuck.add(case1(3,0,1))
+                        validLineArray.add(case1(3,0,1))
                     }
                     11->{
-                        fuck.add(case1(0,1,2))
+                        validLineArray.add(case1(0,1,2))
                     }
 
                     13->{
-                        fuck.add(case1(1,2,3))
+                        validLineArray.add(case1(1,2,3))
                     }
                     14->{
-                        fuck.add(case1(2,3,0))
+                        validLineArray.add(case1(2,3,0))
                     }
 
                     //------------------------------------------case 2
                     3->{
-                        fuck.add(case2(1,2,3,0))
+                        validLineArray.add(case2(1,2,3,0))
 
                     }
 
                     6->{
-                        fuck.add(case2(0,1,2,3))
+                        validLineArray.add(case2(0,1,2,3))
                     }
 
                     9->{
-                        fuck.add(case2(2,3,0,1))
+                        validLineArray.add(case2(2,3,0,1))
                     }
 
 
                     12->{
-                        fuck.add(case2(3,0,1,2))
+                        validLineArray.add(case2(3,0,1,2))
                     }
 
 
@@ -195,9 +195,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         binding.graph.initCor(lX,rX,uY,dY)
 
-        binding.graph.fuck=fuck
+        binding.graph.drawLineArray=validLineArray
 
-        Log.e("fuckaaaaaa",fuck.size.toString())
+        Log.e("fuckaaaaaa",validLineArray.size.toString())
         binding.graph.invalidate()
 
 

@@ -58,7 +58,7 @@ class GraphView : View {
 
 
 
-    var fuck:MutableList <Line> = ArrayList()
+    var drawLineArray:MutableList <Line> = ArrayList()
 
 
 
@@ -106,9 +106,9 @@ class GraphView : View {
         canvas.drawColor(getColor(R.color.white))
 
 
-        if(fuck.isNotEmpty()) {
+        if(drawLineArray.isNotEmpty()) {
             var wavePath = Path()
-            for (k in fuck) {
+            for (k in drawLineArray) {
                 wavePath.moveTo(transferX(k.x1), transferY(k.y1))
                 wavePath.lineTo(transferX(k.x2), transferY(k.y2))
             }
