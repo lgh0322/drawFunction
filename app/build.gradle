@@ -65,4 +65,6 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+
+    implementation "com.tencent.bugly:crashreport:3.3.92"
 }

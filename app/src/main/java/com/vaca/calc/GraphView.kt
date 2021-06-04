@@ -27,6 +27,15 @@ class GraphView : View {
     var dY=-5f;
 
 
+
+    fun initCor(lx:Double,rx:Double,uy:Double,dy:Double){
+        lX=lx.toFloat()
+        rX=rx.toFloat()
+        uY=uy.toFloat()
+        dY=dy.toFloat()
+    }
+
+
     fun transferX(d:Double):Float{
         return ((d-lX)/(rX-lX)*width).toFloat()
     }
@@ -37,13 +46,19 @@ class GraphView : View {
     }
 
 
-
-  lateinit  var waveDataY: DoubleArray
-
-
-   lateinit var waveDataX: DoubleArray
+    fun transferX(d:Float):Float{
+        return ((d-lX)/(rX-lX)*width).toFloat()
+    }
 
 
+    fun transferY(d:Float):Float{
+        return (height-(d-dY)/(uY-dY)*height).toFloat()
+    }
+
+
+
+
+    val fuck:MutableList <Line> = ArrayList()
 
 
 
@@ -91,22 +106,13 @@ class GraphView : View {
         canvas.drawColor(getColor(R.color.white))
 
 
-        if(waveDataX.isNotEmpty()){
+        if(fuck.isNotEmpty()) {
             var wavePath = Path()
-
-
-            wavePath.moveTo(
-                transferX(waveDataX[0]),
-                transferY(waveDataY[0]),
-            )
-            wavePath.lineTo(
-                transferX(waveDataX[k]),
-                transferY(waveDataY[k]),
-            )
-
-
-            canvas.drawPath(wavePath,wavePaint)
-
+            for (k in fuck) {
+                wavePath.moveTo(transferX(k.x1), transferY(k.y1))
+                wavePath.moveTo(transferX(k.x2), transferY(k.y2))
+            }
+            canvas.drawPath(wavePath, wavePaint)
         }
 
 
