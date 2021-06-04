@@ -58,7 +58,7 @@ class GraphView : View {
 
 
 
-    val fuck:MutableList <Line> = ArrayList()
+    var fuck:MutableList <Line> = ArrayList()
 
 
 
@@ -110,7 +110,7 @@ class GraphView : View {
             var wavePath = Path()
             for (k in fuck) {
                 wavePath.moveTo(transferX(k.x1), transferY(k.y1))
-                wavePath.moveTo(transferX(k.x2), transferY(k.y2))
+                wavePath.lineTo(transferX(k.x2), transferY(k.y2))
             }
             canvas.drawPath(wavePath, wavePaint)
         }
