@@ -91,7 +91,7 @@
 
    <EditText
        android:id="@+id/func"
-       android:layout_width="260dp"
+       android:layout_width="320dp"
        android:layout_height="50dp"
        android:layout_margin="10dp"
        android:background="@drawable/pr_report_bt_bg"
@@ -99,7 +99,7 @@
        android:inputType="textEmailAddress"
        android:padding="5dp"
        android:textColor="@color/white"
-       android:textSize="30sp"
+       android:textSize="26sp"
        app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintTop_toBottomOf="@+id/topX" />
 

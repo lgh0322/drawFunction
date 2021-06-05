@@ -30,8 +30,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     var uY=10.0;
     var dY=-10.0;
 
-    var deltaX=0.3;
-    var deltaY=0.3;
+    var deltaX=0.1;
+    var deltaY=0.1;
 
 
 
@@ -316,7 +316,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         binding.ymax.setText(uY.toString())
         binding.ystep.setText(deltaY.toString())
 
-        funString.postValue("y ^2 +x^2-5")
+        funString.postValue("x*sin(x)+y*cos(y)")
 
 
 
